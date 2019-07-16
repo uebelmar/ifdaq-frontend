@@ -4,8 +4,13 @@
 
 export const environment = {
     production: false,
-    hmr       : false
+    sandbox   : false,
+    dev       : true,
+    hmr : true,
+    name: 'development',
+    apiUrl: 'https://api.local.com/api'
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

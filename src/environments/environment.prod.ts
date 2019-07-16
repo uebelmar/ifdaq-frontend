@@ -1,4 +1,8 @@
 export const environment = {
     production: true,
-    hmr       : false
+    dev       : false,
+    sandbox       : false,
+    hmr : false,
+    name: 'production',
+    apiUrl: 'https://api.production.com/api'
 };
