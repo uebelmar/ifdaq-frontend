@@ -5,6 +5,7 @@ import { DOCUMENT } from '@angular/common';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
 import { Router } from '@angular/router';
+import { AuthService } from 'app/auth/services/auth.service';
 
 @Component({
     selector     : 'login',
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit
         @Inject(DOCUMENT) private document: Document,
         private _fuseConfigService: FuseConfigService,
         private _formBuilder: FormBuilder,
-        public router: Router
+        public router: Router,
+        private authService: AuthService
     )
     {
         this.origin = this.document.location.origin;
@@ -58,7 +60,14 @@ export class LoginComponent implements OnInit
           });
     }
 
-    submit(value): void {
-        console.log(value);
+    submit({email, password}): void {
+        const loginData = {
+            email: email,
+            password: password
+        };
+        this.authService.login(loginData)
+            .subscribe( (response) => {
+                console.log(response);
+            });
     }
 }

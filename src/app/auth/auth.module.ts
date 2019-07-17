@@ -9,6 +9,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpConfigInterceptor } from './services/auth.interceptor';
+import { AuthGuard } from './guards/auth.guard';
 
 const appRoutes: Routes = [
   {
@@ -16,6 +19,8 @@ const appRoutes: Routes = [
       component: LoginComponent
   },
 ];
+
+const guards = [AuthGuard];
 
 @NgModule({
   declarations: [
@@ -32,6 +37,10 @@ const appRoutes: Routes = [
     MatCheckboxModule,
     MatButtonModule,
     RouterModule.forChild(appRoutes),
-  ]
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
+    ... guards
+  ],
 })
 export class AuthModule { }

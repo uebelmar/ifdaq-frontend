@@ -25,7 +25,7 @@ const appRoutes: Routes = [
         path      : '',
         redirectTo: 'auth/login',
         pathMatch: 'full'
-    }
+    },
 ];
 
 @NgModule({
