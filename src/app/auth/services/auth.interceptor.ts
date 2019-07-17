@@ -19,14 +19,13 @@ export class HttpConfigInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token: string = localStorage.getItem('token');
-
     if (token) {
       request = request.clone({headers: request.headers.set('Authorization', token)});
     }
     
     request = request.clone({headers: request.headers.set('Accept', 'application/json')});
     request = request.clone({headers: request.headers.set('Access-Control-Allow-Origin', '*')});
-    request = request.clone({headers: request.headers.set('Access-Control-Allow-Headers', 'Origin, Authorization, Content-Type')});
+    request = request.clone({headers: request.headers.set('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token')});
     request = request.clone({headers: request.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')});
 
     return next.handle(request).pipe(

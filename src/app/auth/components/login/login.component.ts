@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit
 
     submit({email, password}): void {
         const loginData = {
-            email: email,
+            username: email,
             password: password
         };
         this.authService.login(loginData)

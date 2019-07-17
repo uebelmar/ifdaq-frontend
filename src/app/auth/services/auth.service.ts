@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'environments/environment';
 import { map, tap } from 'rxjs/operators';
@@ -13,8 +13,14 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  public login(credentials): Observable<any> {
-    return this.http.get<LoginSuccess>(`${this.apiUrl}login`, credentials)
+  public login({username, password}): Observable<any> {
+    const authorizationData = 'Basic ' + btoa(username + ':' + password);
+
+    const headersOptions = new HttpHeaders({
+            'Content-Type':  'application/json',
+            'Authorization': authorizationData
+        });
+    return this.http.get<LoginSuccess>(`${this.apiUrl}login`, { headers: headersOptions })
       .pipe(
         tap((response: LoginSuccess) => {
           console.log(response);
