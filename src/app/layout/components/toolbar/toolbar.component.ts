@@ -112,7 +112,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
 
         // Set the selected language from default languages
         this.selectedLanguage = _.find(this.languages, {id: this._translateService.currentLang});
-        this.getNickName();
+        this.getUsername();
     }
 
     /**
@@ -177,10 +177,10 @@ export class ToolbarComponent implements OnInit, OnDestroy
     }
 
     /**
-     * Get nickname
+     * Get username
      *
      */
-    getNickName(): void
+    getUsername(): void
     {
         const userNotParsed = localStorage.getItem('user');
         this.username = userNotParsed ? JSON.parse(userNotParsed)['username'] : '';
