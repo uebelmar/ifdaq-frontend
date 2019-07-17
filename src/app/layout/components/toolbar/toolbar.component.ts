@@ -8,6 +8,7 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 import { navigation } from 'app/navigation/navigation';
+import { AuthService } from 'app/auth/services/auth.service';
 
 @Component({
     selector     : 'toolbar',
@@ -25,7 +26,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
     navigation: any;
     selectedLanguage: any;
     userStatusOptions: any[];
-
+    username: string;
     // Private
     private _unsubscribeAll: Subject<any>;
 
@@ -39,7 +40,8 @@ export class ToolbarComponent implements OnInit, OnDestroy
     constructor(
         private _fuseConfigService: FuseConfigService,
         private _fuseSidebarService: FuseSidebarService,
-        private _translateService: TranslateService
+        private _translateService: TranslateService,
+        private authService: AuthService
     )
     {
         // Set the defaults
@@ -110,6 +112,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
 
         // Set the selected language from default languages
         this.selectedLanguage = _.find(this.languages, {id: this._translateService.currentLang});
+        this.getNickName();
     }
 
     /**
@@ -148,6 +151,18 @@ export class ToolbarComponent implements OnInit, OnDestroy
     }
 
     /**
+     * Logout
+     *
+     */
+    logout(): void
+    {
+        this.authService.logout()
+            .subscribe((data) => {
+                console.log(data);
+            });
+    }
+
+    /**
      * Set the language
      *
      * @param lang
@@ -159,5 +174,15 @@ export class ToolbarComponent implements OnInit, OnDestroy
 
         // Use the selected language for translations
         this._translateService.use(lang.id);
+    }
+
+    /**
+     * Get nickname
+     *
+     */
+    getNickName(): void
+    {
+        const userNotParsed = localStorage.getItem('user');
+        this.username = userNotParsed ? JSON.parse(userNotParsed)['username'] : '';
     }
 }

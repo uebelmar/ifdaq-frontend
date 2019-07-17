@@ -9,6 +9,7 @@ import { FuseSearchBarModule, FuseShortcutsModule } from '@fuse/components';
 import { FuseSharedModule } from '@fuse/shared.module';
 
 import { ToolbarComponent } from 'app/layout/components/toolbar/toolbar.component';
+import { AuthModule } from 'app/auth/auth.module';
 
 @NgModule({
     declarations: [
@@ -20,6 +21,7 @@ import { ToolbarComponent } from 'app/layout/components/toolbar/toolbar.componen
         MatIconModule,
         MatMenuModule,
         MatToolbarModule,
+        AuthModule,
 
         FuseSharedModule,
         FuseSearchBarModule,
