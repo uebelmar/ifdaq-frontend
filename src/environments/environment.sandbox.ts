@@ -4,5 +4,5 @@ export const environment = {
     sandbox   : true,
     hmr : false,
     name: 'sandbox',
-    apiUrl: 'https://sandbox.ifdaq.com/rest'
+    apiUrl: 'http://sandbox.ifdaq.com/rest/'
 };

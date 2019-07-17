@@ -8,7 +8,7 @@ export const environment = {
     dev       : true,
     hmr : true,
     name: 'development',
-    apiUrl: 'http://11.11.11.121/rest'
+    apiUrl: 'https://sandbox.ifdaq.com/rest/'
 };
 
 
