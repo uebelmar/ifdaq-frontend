@@ -7,6 +7,7 @@
         "start": "ng serve --open --hmr",
         "build": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build --dev",
         "build-stats": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build --dev --stats-json",
+        "build-sandbox": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build -c --sandbox",
         "build-prod": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build --prod",
         "build-prod-stats": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build --prod --stats-json",
         "test": "ng test",

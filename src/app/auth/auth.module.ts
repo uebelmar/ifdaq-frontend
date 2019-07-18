@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpConfigInterceptor } from './services/auth.interceptor';
 import { AuthGuard } from './guards/auth.guard';
 
@@ -30,6 +30,7 @@ const guards = [AuthGuard];
     CommonModule,
     FlexLayoutModule,
     ReactiveFormsModule,
+    HttpClientModule,
     FormsModule,
     MatFormFieldModule,
     MatIconModule,

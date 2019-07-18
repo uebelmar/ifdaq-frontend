@@ -9,6 +9,7 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 import { navigation } from 'app/navigation/navigation';
 import { AuthService } from 'app/auth/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector     : 'toolbar',
@@ -41,7 +42,8 @@ export class ToolbarComponent implements OnInit, OnDestroy
         private _fuseConfigService: FuseConfigService,
         private _fuseSidebarService: FuseSidebarService,
         private _translateService: TranslateService,
-        private authService: AuthService
+        private authService: AuthService,
+        private router: Router,
     )
     {
         // Set the defaults
@@ -159,6 +161,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
         this.authService.logout()
             .subscribe((data) => {
                 console.log(data);
+                this.router.navigate(['/auth/logout']);
             });
     }
 
