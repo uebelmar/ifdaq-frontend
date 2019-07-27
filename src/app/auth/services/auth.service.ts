@@ -24,7 +24,6 @@ export class AuthService {
         return this.http.get<LoginSuccess>(`${this.apiUrl}login`, {headers: headersOptions})
             .pipe(
                 tap((response: LoginSuccess) => {
-                    console.log(response);
                     const token = response.data.token;
                     if (token) {
                         localStorage.setItem('token', token);
@@ -42,7 +41,6 @@ export class AuthService {
         return this.http.get(`${this.apiUrl}logout`)
             .pipe(
                 tap((response) => {
-                    console.log(response);
                     localStorage.removeItem('token');
                     localStorage.removeItem('user');
                 })
