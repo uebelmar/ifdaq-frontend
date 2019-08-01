@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from 'environments/environment';
-import {map, tap} from 'rxjs/operators';
+import {map, tap, catchError} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -46,6 +46,20 @@ export class AuthService {
                 })
             );
     }
+
+    public checkToken(): Observable<boolean> {
+        return this.http.get(`${this.apiUrl}user`)
+            .pipe(
+                map( (response: {data: { token_expires: string}}) => {
+                    const expireData = new Date(response.data.token_expires);
+
+                    const now = new Date();
+                    const nowIsoDate = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
+
+                    return expireData > nowIsoDate;
+                })
+            );
+    }
 }
 
 interface LoginSuccess {
@@ -54,6 +68,6 @@ interface LoginSuccess {
         email: string;
         token: string;
         type: any;
-    },
+    };
     success: true;
 }
