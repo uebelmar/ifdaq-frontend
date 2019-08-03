@@ -4,7 +4,7 @@ import { Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'app/auth/services/auth.service';
 
 @Component({
@@ -19,13 +19,14 @@ export class LoginComponent implements OnInit
     loginForm: FormGroup;
     idToken = localStorage.getItem('id_token');
     origin: string;
-    
+    redirectTo: string;
 
     constructor(
         @Inject(DOCUMENT) private document: Document,
         private _fuseConfigService: FuseConfigService,
         private _formBuilder: FormBuilder,
         public router: Router,
+        public route: ActivatedRoute,
         private authService: AuthService
     )
     {
@@ -46,6 +47,8 @@ export class LoginComponent implements OnInit
                 }
             }
         };
+
+        this.redirectTo = this.route.snapshot.queryParams.redirectTo;
     }
 
     ngOnInit(): void
@@ -67,7 +70,11 @@ export class LoginComponent implements OnInit
         };
         this.authService.login(loginData)
             .subscribe( (response) => {
-                this.router.navigate(['/sample']);
+                if (this.redirectTo){
+                    window.location.href = this.redirectTo;
+                } else {
+                    this.router.navigate(['/dashboard']);
+                }
             });
     }
 }

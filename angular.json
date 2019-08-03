@@ -27,7 +27,8 @@
                             "src/assets"
                         ],
                         "styles": [
-                            "src/styles.scss"
+                            "src/styles.scss",
+                            "src/assets/styles/toastr.css"
                         ],
                         "scripts": [],
                         "showCircularDependencies": false
@@ -118,7 +119,8 @@
                             "src/assets"
                         ],
                         "styles": [
-                            "src/styles.scss"
+                            "src/styles.scss",
+                            "src/assets/styles/toastr.css"
                         ],
                         "scripts": []
                     }

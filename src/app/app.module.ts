@@ -19,12 +19,20 @@ import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { SampleModule } from 'app/main/sample/sample.module';
 import { AuthModule } from './auth/auth.module';
+import { AuthGuard } from './auth/guards/auth.guard';
+import { ToastrModule } from 'ngx-toastr';
+
 
 const appRoutes: Routes = [
     {
         path      : '',
         redirectTo: 'auth/login',
         pathMatch: 'full'
+    },
+    {
+        path      : 'dashboard',
+        canActivate: [AuthGuard],
+        loadChildren: './main/dashboard/dashboard.module#DashboardModule'
     },
 ];
 
@@ -39,7 +47,7 @@ const appRoutes: Routes = [
         RouterModule.forRoot(appRoutes),
 
         TranslateModule.forRoot(),
-
+        ToastrModule.forRoot(),
         // Material moment date module
         MatMomentDateModule,
 
