@@ -6,6 +6,7 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'app/auth/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector     : 'login',
@@ -27,7 +28,8 @@ export class LoginComponent implements OnInit
         private _formBuilder: FormBuilder,
         public router: Router,
         public route: ActivatedRoute,
-        private authService: AuthService
+        private authService: AuthService,
+        private toaster: ToastrService
     )
     {
         this.origin = this.document.location.origin;
@@ -70,11 +72,16 @@ export class LoginComponent implements OnInit
         };
         this.authService.login(loginData)
             .subscribe( (response) => {
+                console.log(response);
                 if (this.redirectTo){
                     window.location.href = this.redirectTo;
                 } else {
                     this.router.navigate(['/dashboard']);
                 }
+            // }, 
+            // (err) => {
+                // console.log(err);
+                // this.toaster.error('Invalid email or password!');
             });
     }
 }

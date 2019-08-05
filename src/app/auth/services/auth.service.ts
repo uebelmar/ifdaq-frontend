@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from 'environments/environment';
 import {map, tap, catchError} from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +12,9 @@ export class AuthService {
 
     apiUrl = environment.apiUrl;
 
-    constructor(private http: HttpClient) {
+    constructor(
+        private http: HttpClient
+        ) {
     }
 
     public login({username, password}): Observable<any> {
@@ -33,7 +36,8 @@ export class AuthService {
                         };
                         localStorage.setItem('user', JSON.stringify(user));
                     }
-                })
+                }),
+                // catchError( (err) => err)
             );
     }
 

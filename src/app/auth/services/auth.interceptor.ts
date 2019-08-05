@@ -8,14 +8,17 @@ import {
   HttpErrorResponse
 } from '@angular/common/http';
 
-import {Observable, of} from 'rxjs';
+import {Observable, of, throwError} from 'rxjs';
 import {map, tap, catchError} from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 // import { SpinnerService } from '../shared/services/spinner.service';
 
 @Injectable()
 export class HttpConfigInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(
+    private toaster: ToastrService
+  ) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token: string = localStorage.getItem('token');
@@ -42,12 +45,11 @@ export class HttpConfigInterceptor implements HttpInterceptor {
       //   }
       //   return event['message'] || event;
       // }),
-      catchError((err: any) => {
-        console.log(err);
-        if (err instanceof HttpErrorResponse) {
-          const errorMessage = err.error.message || err.message;
+      catchError((err) => {
+        if (err.url && err.url.includes('/login')){  
+          this.toaster.error('Invalid email or password!');
         }
-        return of(err);
+        return throwError(err);
       })
     );
   }

@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpConfigInterceptor } from './services/auth.interceptor';
 import { AuthGuard } from './guards/auth.guard';
+import { ToastrModule } from 'ngx-toastr';
 
 const appRoutes: Routes = [
   {
@@ -37,6 +38,7 @@ const guards = [AuthGuard];
     MatInputModule,
     MatCheckboxModule,
     MatButtonModule,
+    ToastrModule,
     RouterModule.forChild(appRoutes),
   ],
   providers: [
