@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {environment} from 'environments/environment';
 import {map, tap, catchError} from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
@@ -61,7 +61,8 @@ export class AuthService {
                     const nowIsoDate = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
 
                     return expireData > nowIsoDate;
-                })
+                }),
+                catchError( (err) => of(false))
             );
     }
 }
