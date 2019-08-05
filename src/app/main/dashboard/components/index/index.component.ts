@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DashboardService } from '../../services/dashboard.service';
 
 @Component({
   selector: 'app-index',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dashboardService: DashboardService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.getDashboardData();
   }
 
+  getDashboardData(): void {
+    this.dashboardService.getDashboardData()
+      .subscribe( (data) => {
+        console.log(data);
+      });
+  }
 }
