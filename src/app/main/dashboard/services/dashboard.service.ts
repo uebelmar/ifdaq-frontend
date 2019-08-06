@@ -10,6 +10,25 @@ import { HttpClient } from '@angular/common/http';
 export class DashboardService {
 
   apiUrl = environment.apiUrl;
+
+  data = {
+    loosers: [
+      {
+        first_name: 'adsgadg addssg',
+        last_name: 'adsgadg addssg',
+        ifdaq_sum_value: '486.34',
+        ifdaq_sum_value_yesterday: '526.34',
+        rank: '1252',
+      },
+      {
+        first_name: 'a34dg addssg',
+        last_name: 'ads3dfhdg addssg',
+        ifdaq_sum_value: '286.34',
+        ifdaq_sum_value_yesterday: '26.34',
+        rank: '22',
+      },
+    ]
+  };
   
   constructor(
     private http: HttpClient
@@ -20,7 +39,14 @@ export class DashboardService {
       .pipe(
           tap( (response) => {
             console.log(response);
+          }),
+          map((response: {data: {models: {}}}) => {
+            return response.data.models;
           })
       );
   }
+
+  // public getDashboardData(): Observable<object> {
+  //   return of(this.data);
+  // }
 }

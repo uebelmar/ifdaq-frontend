@@ -7,6 +7,8 @@ import { DashboardService } from '../../services/dashboard.service';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
+  loosers: Array<object>;
+  gainers: Array<object>;
 
   constructor(private dashboardService: DashboardService) { }
 
@@ -18,6 +20,8 @@ export class IndexComponent implements OnInit {
     this.dashboardService.getDashboardData()
       .subscribe( (data) => {
         console.log(data);
+        this.loosers = data['loosers'];
+        this.gainers = data['gainers'];
       });
   }
 }

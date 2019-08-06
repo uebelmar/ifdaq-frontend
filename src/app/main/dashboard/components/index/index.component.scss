@@ -1,0 +1,31 @@
+.dashboard-wrapper{
+    background: #fff;
+    .card-header{
+        color: #fff!important;
+    }
+    .card-body{
+        font-size: 0.8em;
+    }
+    .persons{
+        border: 1px solid rgb(204, 204, 204);
+        border-top: none;
+        & > *:not(.img) {
+            padding: 5px;
+            margin: 0;
+        }
+        .rank{
+            font-size: 1.2em;
+        }
+        .value, .difference{
+            font-size: 0.8em;
+        }
+        .img{
+            height: 80px;
+            overflow: hidden;
+            img{
+                width: 60px;
+                height: 100%;
+            }
+        }
+    }
+}

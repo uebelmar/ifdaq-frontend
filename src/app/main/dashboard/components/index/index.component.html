@@ -1,3 +1,65 @@
-<p>
-  index works!
-</p>
+<div class="dashboard-wrapper" fxLayout="column" fxFlex="100%">
+
+  <app-line-basic 
+    fxFlex.gt-sm="100%" fxFlex.gt-md="100%" 
+  ></app-line-basic>
+
+  <div fxLayout="row" fxFlex="100%" fxLayout.lt-sm="column" class="gainers-loosers">
+
+    <div class="m-20"  fxLayout="column" fxFlex="100%">
+      <div class="card-header green-700 px-16 py-4 text-bold"
+        fxLayout="row" fxLayoutAlign="space-between">
+        <span>Top Gainers</span>
+        <mat-icon class="s-20">arrow_upward</mat-icon>
+      </div>
+      <div class="card-body" fxLayout="column" fxFlex="100%">
+        <div class="gainers persons"
+          *ngFor="let item of gainers"
+          fxLayout="row" fxFlex="100%">
+            <span class="rank" fxFlex="9">{{item.rank}}</span>
+            <div class="img" fxFlex="15">
+              <img [src]="item.profileImage" alt="">
+            </div>
+            <p class="name" fxFlex="50">{{item.first_name  + ' ' + item.last_name}}</p>
+            <div class="value" fxFlex="11">
+              <p class="today">{{item.ifdaq_sum_value_rel}}</p>
+              <p class="yesterday">({{item.ifdaq_sum_value_yesterday}})</p>
+            </div>
+            <div class="difference green-700-fg" fxFlex="15">
+              <p class="today">804.3</p>
+              <p class="yesterday">34.2%</p>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="m-20" fxLayout="column" fxFlex="100%">
+      <div class="card-header red-700 px-16 py-4 text-bold" 
+          fxLayout="row" fxLayoutAlign="space-between">
+        <span>Top Loosers</span>
+        <mat-icon class="s-20">arrow_downward</mat-icon>
+      </div>
+      <div class="card-body" fxLayout="column" fxFlex="100%">
+          <div class="loosers persons"
+            *ngFor="let item of loosers"
+            fxLayout="row">
+              <span class="rank" fxFlex="8">324</span>
+              <div class="img" fxFlex="13">
+                <img [src]="item.profileImage" alt="">
+              </div>
+              <p class="name" fxFlex="55">{{item.first_name  + ' ' + item.last_name}}</p>
+              <div class="value" fxFlex="12">
+                <p class="today">{{item.ifdaq_sum_value_rel}}</p>
+                <!-- <p class="yesterday">({{item.yesterday.ifdaq_sum_value_rel}})</p> -->
+              </div>
+              <div class="difference red-700-fg" fxFlex="12">
+                <p class="today">31</p>
+                <p class="yesterday">34.3%</p>
+              </div>
+          </div>
+        </div>
+    </div>
+
+  </div>
+
+</div>

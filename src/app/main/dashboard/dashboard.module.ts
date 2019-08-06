@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { IndexComponent } from './components/index/index.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthModule } from 'app/auth/auth.module';
+import { MatIconModule } from '@angular/material/icon';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { LineBasicComponent } from './components/line-basic/line-basic.component';
 
 const routes: Routes = [
   {
@@ -12,10 +15,15 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [IndexComponent],
+  declarations: [
+    IndexComponent,
+    LineBasicComponent
+  ],
   imports: [
     CommonModule,
     AuthModule,
+    FlexLayoutModule,
+    MatIconModule,
     RouterModule.forChild(routes)
   ]
 })
