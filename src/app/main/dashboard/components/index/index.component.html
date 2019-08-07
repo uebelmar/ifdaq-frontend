@@ -23,11 +23,11 @@
             <p class="name" fxFlex="50">{{item.first_name  + ' ' + item.last_name}}</p>
             <div class="value" fxFlex="11">
               <p class="today">{{item.ifdaq_sum_value_rel}}</p>
-              <p class="yesterday">({{item.ifdaq_sum_value_yesterday}})</p>
+              <p class="yesterday">({{item.yesterday.ifdaq_sum_value_rel}})</p>
             </div>
-            <div class="difference green-700-fg" fxFlex="15">
-              <p class="today">804.3</p>
-              <p class="yesterday">34.2%</p>
+            <div class="difference" fxFlex="15">
+              <p class="today" appFontColor>{{item.ifdaq_sum_value_rel - item.yesterday.ifdaq_sum_value_rel}}</p>
+              <p class="yesterday" appFontColor>{{(item.ifdaq_sum_value_rel - item.yesterday.ifdaq_sum_value_rel) * 100 / item.ifdaq_sum_value_rel}}</p>
             </div>
         </div>
       </div>
@@ -43,18 +43,18 @@
           <div class="loosers persons"
             *ngFor="let item of loosers"
             fxLayout="row">
-              <span class="rank" fxFlex="8">324</span>
+            <span class="rank" fxFlex="9">{{item.rank}}</span>
               <div class="img" fxFlex="13">
                 <img [src]="item.profileImage" alt="">
               </div>
               <p class="name" fxFlex="55">{{item.first_name  + ' ' + item.last_name}}</p>
               <div class="value" fxFlex="12">
                 <p class="today">{{item.ifdaq_sum_value_rel}}</p>
-                <!-- <p class="yesterday">({{item.yesterday.ifdaq_sum_value_rel}})</p> -->
+                <p class="yesterday">({{item.yesterday.ifdaq_sum_value_rel}})</p>
               </div>
-              <div class="difference red-700-fg" fxFlex="12">
-                <p class="today">31</p>
-                <p class="yesterday">34.3%</p>
+              <div class="difference" fxFlex="12">
+                <p class="today" appFontColor>{{item.ifdaq_sum_value_rel - item.yesterday.ifdaq_sum_value_rel}}</p>
+                <p class="yesterday" appFontColor>{{(item.ifdaq_sum_value_rel - item.yesterday.ifdaq_sum_value_rel) * 100 / item.ifdaq_sum_value_rel}}</p>
               </div>
           </div>
         </div>

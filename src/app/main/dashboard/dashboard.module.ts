@@ -6,6 +6,7 @@ import { AuthModule } from 'app/auth/auth.module';
 import { MatIconModule } from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LineBasicComponent } from './components/line-basic/line-basic.component';
+import { FontColorDirective } from './directives/font-color.directive';
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     IndexComponent,
-    LineBasicComponent
+    LineBasicComponent,
+    FontColorDirective
   ],
   imports: [
     CommonModule,
