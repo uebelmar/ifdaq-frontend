@@ -10,21 +10,24 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AuthGuard implements CanActivate {
 
-  url: string;
+  queryParams: object;
 
   constructor(
     private router: Router,
     private authService: AuthService,
     private toastr: ToastrService
     ) {
-      this.url = window.location.href;
+      const url = window.location.href;
+      this.queryParams = {
+        redirectTo: url
+      };
     }
 
   canActivate(): Observable<boolean> | boolean {
     const token: string = localStorage.getItem('token');
 
     if (!token) {
-      this.router.navigate(['/auth/login']);
+      this.redirectToLogin();
       return false;
     }
 
@@ -33,13 +36,13 @@ export class AuthGuard implements CanActivate {
         tap((result) => {
           if (!result) {
             this.toastr.warning('Token is expired!');
-            const queryParams = {
-              redirectTo: this.url
-            };
-
-            this.router.navigate(['/auth/login'], {queryParams});
+            this.redirectToLogin();
           }
         })
       );
+  }
+
+  redirectToLogin(): void {
+    this.router.navigate(['/auth/login'], {queryParams: this.queryParams});
   }
 }
