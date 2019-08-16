@@ -4,7 +4,7 @@
     "license": "https://themeforest.net/licenses/terms/regular",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve --open --hmr",
+        "start": "ng serve --open --hmr --configuration=local",
         "build": "node --max_old_space_size=2048 ./node_modules/@angular/cli/bin/ng build --dev",
         "build-stats": "node --max_old_space_size=2048 ./node_modules/@angular/cli/bin/ng build --dev --stats-json",
         "build-sandbox": "node --max_old_space_size=2048 ./node_modules/@angular/cli/bin/ng build -c --sandbox",
