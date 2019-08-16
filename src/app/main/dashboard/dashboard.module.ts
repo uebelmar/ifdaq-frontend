@@ -7,6 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LineBasicComponent } from './components/line-basic/line-basic.component';
 import { FontColorDirective } from './directives/font-color.directive';
+import { StockChartComponent } from './components/stock-chart/stock-chart.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -19,13 +21,15 @@ const routes: Routes = [
   declarations: [
     IndexComponent,
     LineBasicComponent,
-    FontColorDirective
+    FontColorDirective,
+    StockChartComponent
   ],
   imports: [
     CommonModule,
     AuthModule,
     FlexLayoutModule,
     MatIconModule,
+    HttpClientModule,
     RouterModule.forChild(routes)
   ]
 })

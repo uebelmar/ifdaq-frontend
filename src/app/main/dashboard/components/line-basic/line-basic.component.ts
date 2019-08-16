@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
-
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 
 declare var require: any;
@@ -19,7 +17,9 @@ noData(Highcharts);
   templateUrl: './line-basic.component.html',
   styleUrls: ['./line-basic.component.scss']
 })
-export class LineBasicComponent implements OnInit {
+export class LineBasicComponent implements AfterViewInit {
+  
+  @ViewChild('lineBasic', {static: false}) container: ElementRef;
 
   options: Highcharts.Options = {
     title: {
@@ -91,8 +91,8 @@ export class LineBasicComponent implements OnInit {
   };
   constructor() { }
 
-  ngOnInit(): void {
-    Highcharts.chart('container', this.options);
+  ngAfterViewInit(): void {
+    Highcharts.chart(this.container.nativeElement, this.options);
   }
 
 }

@@ -24,8 +24,9 @@
             height: 80px;
             overflow: hidden;
             img{
-                width: 60px;
+                width: auto;
                 height: 100%;
+                max-width: auto;
             }
         }
     }
