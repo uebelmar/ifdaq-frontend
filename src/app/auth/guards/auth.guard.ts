@@ -34,6 +34,7 @@ export class AuthGuard implements CanActivate {
     return this.authService.checkToken()
       .pipe(
         tap((result) => {
+          console.log(result);
           if (!result) {
             this.toastr.warning('Token is expired!');
             this.redirectToLogin();

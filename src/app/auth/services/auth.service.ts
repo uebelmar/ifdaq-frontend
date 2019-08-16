@@ -59,8 +59,7 @@ export class AuthService {
 
                     const now = new Date();
                     const nowIsoDate = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
-
-                    return expireData < nowIsoDate;
+                    return expireData > nowIsoDate;
                 }),
                 catchError( (err) => of(false))
             );
