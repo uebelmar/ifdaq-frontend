@@ -19,9 +19,8 @@ export class IndexComponent implements OnInit {
   getDashboardData(): void {
     this.dashboardService.getDashboardData()
       .subscribe( (data) => {
-        console.log(data);
-        this.loosers = data['loosers'];
-        this.gainers = data['gainers'];
+        this.loosers = data['models']['loosers'];
+        this.gainers = data['models']['gainers'];
       });
   }
 }

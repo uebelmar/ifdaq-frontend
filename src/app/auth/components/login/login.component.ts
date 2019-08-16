@@ -72,7 +72,6 @@ export class LoginComponent implements OnInit
         };
         this.authService.login(loginData)
             .subscribe( (response) => {
-                console.log(response);
                 if (this.redirectTo){
                     window.location.href = this.redirectTo;
                 } else {
